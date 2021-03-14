@@ -19,3 +19,7 @@ ward off
 wipe out
 apprehensive(adj)
 fashion(v)
+tuition(n)
+act(n)
+code(n)
+prospect(n)
