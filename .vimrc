@@ -6,7 +6,7 @@ set cursorline
 
 set cursorcolumn
 
-set foldmethod=manual
+set hlsearch
 
 set showmatch
 
@@ -30,9 +30,13 @@ set noundofile
 set nobackup
 set noswapfile
 
-set guifont=Consolas:h18
+set guifont=Andale\ Mono\ 16
+
+set linespace=4
+
 "let ctrl-w,ctrl-h,ctrl-u can use in insert mode 
 set backspace=indent,eol,start
+
 "set god complete
 set nocompatible
 filetype plugin on
@@ -41,6 +45,14 @@ filetype plugin on
 syntax enable
 set background=dark
 colorscheme solarized
+
+"spell local check
+setlocal spelllang=en_us
+setlocal spellfile=~/.vim/spell/en.utf-8.add
+setlocal spellfile+=~/.vim/spell/myOthers.add
+
+"change spell color
+hi SpellBad cterm=underline ctermfg=009
 "}}}	
 
 
@@ -84,7 +96,8 @@ nnoremap <silent> <F3> :!ctags -R<cr>
 nnoremap <silent> <c-l> :<c-u>nohlsearch<cr><c-l>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
-" ctags
+" %% behalf persent dir
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 "}}}
 
 "abbreviations {{{
@@ -110,10 +123,8 @@ iabbrev mpf printf("%d",n);
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}
-Plug 'junegunn/vim-easy-align'
 Plug 'mattn/emmet-vim'
 Plug 'kien/ctrlp.vim'
-Plug 'Shougo/neocomplcache.vim'
 Plug 'tpope/vim-commentary'
 Plug 'Lokaltog/vim-powerline'
 Plug 'altercation/vim-colors-solarized'
@@ -131,9 +142,6 @@ let g:formatterpath = ['/home/yang/CppStyle/astyle']
 nnoremap <F4> :Autoformat<cr>
 "ctags
 nnoremap <F5> :!ctags -R<cr>
-" neocomplcache 
-"let g:neocomplcache_enable_at_startup = 1  
-"let g:neocomplcache_enable_auto_select = 1 
 "}}}
 
 " {{{
