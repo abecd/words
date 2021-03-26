@@ -62,3 +62,6 @@ beside(adj)
 
 faulty(n)
 vague(adj)
+
+transit(v)
+compentent(n)

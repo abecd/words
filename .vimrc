@@ -15,7 +15,7 @@ set tabstop=2
 set shiftwidth=2 
 set autoindent 
 
-set hidden
+set hidden "允许未保存的情况下切换其他缓冲区
 set laststatus=2
 
 set ruler
@@ -31,6 +31,10 @@ set nobackup
 set noswapfile
 
 set guifont=Consolas:h18
+
+"set god complete
+set nocompatible
+filetype plugin on
 
 "set theme
 syntax enable
@@ -114,21 +118,25 @@ Plug 'Lokaltog/vim-powerline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
+
 
 
 "NERDTreeToggle
 nnoremap <F3> :NERDTreeToggle<cr>
+"autoformat 需要全局安装js-beautify npm install -g js-beautify 和 设置全局格式化路径astyle来格式化c++
+let g:formatterpath = ['/home/yang/CppStyle/astyle']
+nnoremap <F4> :Autoformat<cr>
+"ctags
+nnoremap <F5> :!ctags -R<cr>
 " neocomplcache 
-let g:neocomplcache_enable_at_startup = 1  
-let g:neocomplcache_enable_auto_select = 1 
+"let g:neocomplcache_enable_at_startup = 1  
+"let g:neocomplcache_enable_auto_select = 1 
 "}}}
 
 " {{{
-"c++.
-nnoremap <F5> :!g++ % -o %:r<cr>
-nnoremap <F6> :!./%:r <input.txt> output.txt<cr>
-"vueg++
-nnoremap <F7> :!npm run serve<cr>
-nnoremap <F8> :!npm run build<cr>
+"vue 
+nnoremap <F6> :!npm run serve<cr>
+nnoremap <F7> :!npm run build<cr>
 " }}}"
