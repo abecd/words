@@ -31,7 +31,8 @@ set nobackup
 set noswapfile
 
 set guifont=Consolas:h18
-
+"let ctrl-w,ctrl-h,ctrl-u can use in insert mode 
+set backspace=indent,eol,start
 "set god complete
 set nocompatible
 filetype plugin on
