@@ -131,6 +131,20 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'Chiel92/vim-autoformat'
+Plug 'cakebaker/scss-syntax.vim'
+
+Plug 'mxw/vim-jsx'
+Plug 'posva/vim-vue'
+Plug 'Raimondi/delimitMate'
+Plug 'gko/vim-coloresque'
+Plug 'rhysd/vim-gfm-syntax'
+Plug 'instant-markdown/vim-instant-markdown'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'mattn/webapi-vim'
+Plug 'HerringtonDarkholme/yats.vim' 
 call plug#end()
 
 
