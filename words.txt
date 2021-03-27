@@ -64,4 +64,8 @@ faulty(n)
 vague(adj)
 
 transit(v)
-compentent(n)
+competent(n)
+
+urgent(v)
+instead(adv)
+convert(v)
