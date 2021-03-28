@@ -81,7 +81,7 @@ nnoremap \ ,
 nnoremap _ :.mov .-2<cr>
 "  -
 nnoremap - :.mov .+1<cr>
-nnoremap <c-u> gUawe
+"nnoremap <c-u> gUawe
 inoremap jj <esc>i
 inoremap kk <esc>la
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -132,6 +132,7 @@ Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'Chiel92/vim-autoformat'
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'vim-syntastic/syntastic'
 
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
@@ -156,6 +157,15 @@ let g:formatterpath = ['/home/yang/CppStyle/astyle']
 nnoremap <F4> :Autoformat<cr>
 "ctags
 nnoremap <F5> :!ctags -R<cr>
+"Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 "}}}
 
 " {{{
