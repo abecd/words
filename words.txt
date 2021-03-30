@@ -78,3 +78,8 @@ mansion(n)
 oak(n)
 whereas(adv)
 elicit(v) a laugh
+chest(n)
+corporate(adj)
+cooperate(v)
+college(n)
+affiliate(v)
