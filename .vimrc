@@ -35,7 +35,9 @@ set noundofile
 set nobackup
 set noswapfile
 
-set guifont=Andale\ Mono\ 16
+"设置字体和编码
+set guifont=DroidSansMono_Nerd_Font:h11
+set encoding=utf8
 
 set linespace=4
 
@@ -47,9 +49,10 @@ set nocompatible
 filetype plugin on
 
 "set theme
-syntax enable
-set background=dark
-colorscheme solarized
+"syntax enable
+"set background=black
+colorscheme desert
+"solarized
 
 "spell local check
 setlocal spelllang=en_us
@@ -91,6 +94,7 @@ nnoremap - :.mov .+1<cr>
 "nnoremap <c-u> gUawe
 inoremap jj <esc>i
 inoremap kk <esc>la
+inoremap <leader><leader> <c-j><esc>O
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <silent> [b :bprevious <cr>
@@ -133,7 +137,8 @@ Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}
 Plug 'mattn/emmet-vim'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Lokaltog/vim-powerline'
+"Plug 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
@@ -141,6 +146,9 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'bronson/vim-visual-star-search'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'vim-syntastic/syntastic'
+Plug 'ryanoasis/vim-devicons' "美化目录
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' "美化目录
+
 
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
@@ -188,6 +196,7 @@ let g:NERDDefaultAlign = 'left'
 " 自动保存折叠
 au BufWinLeave * silent mkview
 au BufWinEnter * silent loadview
+
 
 " {{{
 "vue 
