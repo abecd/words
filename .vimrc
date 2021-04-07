@@ -14,7 +14,12 @@ set nrformats=  "c-a,c-x在0开头的数字加减以十进制操作
 set tabstop=2 
 set shiftwidth=2 
 set autoindent 
-
+set smartcase "设置智能大小写
+set incsearch "设置增量查找(查询预览) 
+" zi 全局打开/关闭折叠
+" zo/zc 打开/关闭折叠
+" zR/zM 打开/关闭所有嵌套折叠
+set foldmethod=manual "手动折叠
 set hidden "允许未保存的情况下切换其他缓冲区
 set laststatus=2
 
@@ -65,6 +70,8 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+cnoremap <up> <nop>
+cnoremap <down> <nop>
 nnoremap <backspace> <nop>
 cnoremap <backspace> <nop>
 inoremap <backspace> <nop>
@@ -125,12 +132,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}
 Plug 'mattn/emmet-vim'
 Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
 Plug 'Lokaltog/vim-powerline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'Chiel92/vim-autoformat'
+Plug 'bronson/vim-visual-star-search'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'vim-syntastic/syntastic'
 
@@ -166,7 +174,20 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+"nerdcommenter
+"# <leader>cc // 注释当前行
+"# <leader>cs /* 块注释 */
+"# <leader>cA 在行尾添加注释//
+"# <leader>cu 取消注释
+
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
 "}}}
+
+" 自动保存折叠
+au BufWinLeave * silent mkview
+au BufWinEnter * silent loadview
 
 " {{{
 "vue 
