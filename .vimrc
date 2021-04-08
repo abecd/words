@@ -1,4 +1,4 @@
-" vim-plug安装命令:curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 " 基本配置{{{
 set number
 
@@ -16,6 +16,7 @@ set shiftwidth=2
 set autoindent 
 set smartcase "设置智能大小写
 set incsearch "设置增量查找(查询预览) 
+
 " zi 全局打开/关闭折叠
 " zo/zc 打开/关闭折叠
 " zR/zM 打开/关闭所有嵌套折叠
@@ -47,6 +48,8 @@ set backspace=indent,eol,start
 "set god complete
 set nocompatible
 filetype plugin on
+"开启html标签跳转
+runtime macros/matchit.vim
 
 "set theme
 "syntax enable
@@ -131,7 +134,7 @@ iabbrev mpf printf("%d",n);
 
 " {{{
 "vim-plug
-
+" vim-plug安装命令:curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}
 Plug 'mattn/emmet-vim'
@@ -148,6 +151,9 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'ryanoasis/vim-devicons' "美化目录
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' "美化目录
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_disable_startup_warning = 1 "自动补全的vim版本警告
+
 
 
 Plug 'mxw/vim-jsx'
@@ -155,7 +161,8 @@ Plug 'posva/vim-vue'
 Plug 'Raimondi/delimitMate'
 Plug 'gko/vim-coloresque'
 Plug 'rhysd/vim-gfm-syntax'
-Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+" sudo npm -g install instant-markdown-d
+Plug 'instant-markdown/vim-instant-markdown'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
@@ -168,6 +175,8 @@ call plug#end()
 
 "NERDTreeToggle
 nnoremap <F3> :NERDTreeToggle<cr>
+let NERDTreeShowHidden=1 "默认显示书签栏
+let NERDTreeShowBookmarks=1 "默认显示隐藏文件
 "autoformat 需要全局安装js-beautify npm install -g js-beautify 和 设置全局格式化路径astyle来格式化c++
 let g:formatterpath = ['/home/yang/CppStyle/astyle']
 nnoremap <F4> :Autoformat<cr>
@@ -183,6 +192,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_html_checkers = ['htmlhint','jshint'] "html中的样式没检查
+let g:syntastic_css_checkers = ['csslint']
+let g:syntastic_sass_checkers = ['sass']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_json_checkers = ['jsonlint']
+
 "nerdcommenter
 "# <leader>cc // 注释当前行
 "# <leader>cs /* 块注释 */
@@ -197,6 +212,9 @@ let g:NERDDefaultAlign = 'left'
 au BufWinLeave * silent mkview
 au BufWinEnter * silent loadview
 
+
+" scss自动补全 
+autocmd FileType scss setl iskeyword+=@-@
 
 " {{{
 "vue 
