@@ -155,7 +155,7 @@ Plug 'posva/vim-vue'
 Plug 'Raimondi/delimitMate'
 Plug 'gko/vim-coloresque'
 Plug 'rhysd/vim-gfm-syntax'
-Plug 'instant-markdown/vim-instant-markdown'
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
