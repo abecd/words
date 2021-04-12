@@ -1,6 +1,6 @@
-
 " 基本配置{{{
 set number
+
 
 set cursorline
 
@@ -51,11 +51,6 @@ filetype plugin on
 "开启html标签跳转
 runtime macros/matchit.vim
 
-"set theme
-"syntax enable
-"set background=black
-colorscheme desert
-"solarized
 
 "spell local check
 setlocal spelllang=en_us
@@ -78,6 +73,9 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 cnoremap <up> <nop>
 cnoremap <down> <nop>
+cnoremap <cr> <nop>
+nnoremap <cr> <nop>
+inoremap <cr> <nop>
 nnoremap <backspace> <nop>
 cnoremap <backspace> <nop>
 inoremap <backspace> <nop>
@@ -89,7 +87,11 @@ let localmapleader = "\\"
 nnoremap \ ,
 "}}}
 
-" 自定义映射{{{
+" 自定义映射{{{"set theme
+"syntax enable
+"set background=black
+colorscheme desert
+"solarized
 "  _
 nnoremap _ :.mov .-2<cr>
 "  -
@@ -104,9 +106,6 @@ nnoremap <silent> [b :bprevious <cr>
 nnoremap <silent> ]b :bnext <cr>
 nnoremap <silent> [B :bfirst <cr>
 nnoremap <silent> ]B :blast <cr>
-nnoremap <silent> <leader>w :.move .-2<cr>
-nnoremap <silent> <leader>s :.move .+1<cr>
-nnoremap <silent> <F3> :!ctags -R<cr>
 nnoremap <silent> <c-l> :<c-u>nohlsearch<cr><c-l>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
@@ -114,61 +113,37 @@ cnoremap <c-n> <Down>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 "}}}
 
-"abbreviations {{{
-iabbrev c++ #include <cstdio><cr>#include <algorithm><cr>#include <vector><cr>using namespace std;<cr>int main()<cr>{<cr>}
-iabbrev mfor for(int i = 0;i<n;i++){}
-iabbrev msf scanf("%d",&n);
-iabbrev mpf printf("%d",n);
-"}}}
-
-" {{{
-"custom state line
-"set statusline=filename:\ %f
-"set statusline+=%=
-"set statusline+=%l
-"set statusline+=/
-"set statusline+=%L
-"set statusline+=\ curr/sum
-"}}}
-
 
 " {{{
 "vim-plug
 " vim-plug安装命令:curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
+" sudo npm -g install instant-markdown-d
+Plug 'instant-markdown/vim-instant-markdown'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}
 Plug 'mattn/emmet-vim'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'Lokaltog/vim-powerline'
 Plug 'vim-airline/vim-airline'
-Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag'
+Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
-Plug 'Chiel92/vim-autoformat'
 Plug 'bronson/vim-visual-star-search'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'vim-syntastic/syntastic'
 Plug 'ryanoasis/vim-devicons' "美化目录
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' "美化目录
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_disable_startup_warning = 1 "自动补全的vim版本警告
-
-
-
-Plug 'mxw/vim-jsx'
-Plug 'posva/vim-vue'
-Plug 'Raimondi/delimitMate'
-Plug 'gko/vim-coloresque'
-Plug 'rhysd/vim-gfm-syntax'
-" sudo npm -g install instant-markdown-d
-Plug 'instant-markdown/vim-instant-markdown'
 Plug 'Yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/vim-auto-save'
+Plug 'kana/vim-textobj-user' "vim-textobj-entire使用的前提
+Plug 'kana/vim-textobj-entire'
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'mattn/webapi-vim'
-Plug 'HerringtonDarkholme/yats.vim' 
+Plug 'posva/vim-vue'
+Plug 'mxw/vim-jsx'
+Plug 'rhysd/vim-gfm-syntax'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'Chiel92/vim-autoformat'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 
@@ -177,28 +152,13 @@ call plug#end()
 nnoremap <F3> :NERDTreeToggle<cr>
 let NERDTreeShowHidden=1 "默认显示书签栏
 let NERDTreeShowBookmarks=1 "默认显示隐藏文件
+
 "autoformat 需要全局安装js-beautify npm install -g js-beautify 和 设置全局格式化路径astyle来格式化c++
 let g:formatterpath = ['/home/yang/CppStyle/astyle']
 nnoremap <F4> :Autoformat<cr>
-"ctags
-nnoremap <F5> :!ctags -R<cr>
-"Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
-let g:syntastic_html_checkers = ['htmlhint','jshint'] "html中的样式没检查
-let g:syntastic_css_checkers = ['csslint']
-let g:syntastic_sass_checkers = ['sass']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_json_checkers = ['jsonlint']
-
-"nerdcommenter
+"nerdcommenter 注释
 "# <leader>cc // 注释当前行
 "# <leader>cs /* 块注释 */
 "# <leader>cA 在行尾添加注释//
@@ -206,16 +166,69 @@ let g:syntastic_json_checkers = ['jsonlint']
 
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
+
+let g:coc_disable_startup_warning = 1 "关闭自动补全的vim版本警告
 "}}}
+ 
+" auto-save 自动保存
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
 
-" 自动保存折叠
-au BufWinLeave * silent mkview
-au BufWinEnter * silent loadview
+"coc-vim 代码补全
+
+let g:coc_global_extensions = ['coc-json','coc-vimlsp','coc-snippets','coc-html','coc-css','coc-clangd','coc-tsserver']
+
+set updatetime=100
+set shortmess+=c
+
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 
-" scss自动补全 
-autocmd FileType scss setl iskeyword+=@-@
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 
+" ultisnips
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 " {{{
 "vue 
 nnoremap <F6> :!npm run serve<cr>
